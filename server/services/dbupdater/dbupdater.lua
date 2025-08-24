@@ -108,7 +108,25 @@ CreateThread(function()
         Wait(10)
     until GetResourceState('oxmysql') == 'started' and VorpInitialized == true
 
-    local filedata = LoadResourceFile(GetCurrentResourceName(), "./server/services/dbupdater/status.json")
+    -- Define the resource name once for reuse
+    local resourceName = GetCurrentResourceName()
+
+    -- Try to load the main status file
+    local filedata = LoadResourceFile(resourceName, "./server/services/dbupdater/status.json")
+
+    -- If the file doesn't exist or is empty, fall back to the first-run file
+    if not filedata or filedata == "" then
+        print("^3[DBUpdater]^0 status.json not found, loading first-run defaults...")
+        filedata = LoadResourceFile(resourceName, "./server/services/dbupdater/status.json.firstrun")
+
+        -- Optional: handle the case where even the fallback is missing
+        if not filedata or filedata == "" then
+            print("^1[DBUpdater]^0 ERROR: Neither status.json nor status.json.firstrun could be loaded.")
+            -- You could set filedata to a default JSON string here if needed
+            filedata = "{}"
+        end
+    end
+
     local status = json.decode(filedata)
     local updated = false
 

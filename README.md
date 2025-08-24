@@ -27,6 +27,7 @@ VORP Core is a comprehensive Lua-based framework for RedM, designed to enhance s
 ## Features Overview
 
 ## Configuration Options (`config.lua`)
+   - N.B Copy the supplied `\config\config.lua.example` into a new `\config\config.lua` and choose your settings as below
 
 ### Server Settings
 - **Language:** Set the server's language, referring to available options in the 'translation' folder.
@@ -72,7 +73,15 @@ VORP Core is a comprehensive Lua-based framework for RedM, designed to enhance s
 
 ---
 
+### For Logging and Skills configuration, do the same as before:
+   - Copy the supplied `\config\logs.lua.example` into a new `\config\logs.lua` and choose your settings
+   - Copy the supplied `\config\skills.lua.example` into a new `\config\skills.lua` and choose your settings
+   - Even if you make no changes, you MUST create these files.
+
+---
+
 ### Commands Overview (`commands.lua`)
+   - Copy the supplied `\config\commands.lua.example` into a new `\config\commands.lua` and choose your settings as below
 
 ##### Administrative Commands
 - **addGroup:** Assign a group to a player with specified ID and group name.
